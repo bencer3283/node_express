@@ -1,44 +1,13 @@
 let express = require('express');
 let app = express();
 
-absolutePath = __dirname + "/views/index.html";
+headerPath = __dirname + "/views/index.html";
+stylePath = __dirname + "/public";
 
 app.get("/", function(req, res) {
-    res.sendFile(absolutePath);
+    res.sendFile(headerPath);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use("/public", express.static(stylePath));
 
 module.exports = app;
