@@ -9,6 +9,11 @@ let app = express();
 headerPath = __dirname + "/views/index.html";
 stylePath = __dirname + "/public";
 
+app.use(function (req, res, next) {
+    console.log(req.method + " " + req.path + " - " + req.ip);
+    next();
+})
+
 app.get("/", function(req, res) {
     res.sendFile(headerPath);
 });
@@ -16,7 +21,7 @@ app.get("/", function(req, res) {
 app.use("/public", express.static(stylePath));
 
 app.get("/json", function (req, res) {
-    console.log(process.env.MESSAGE_STYLE);
+    //console.log(process.env.MESSAGE_STYLE);
     if (process.env.MESSAGE_STYLE == "uppercase") res.json({"message": "HELLO JSON"});
     else res.json({"message": "Hello json"});
 })
