@@ -1,6 +1,10 @@
+let result = require('dotenv').config();
+if (result.error) {
+  throw result.error;
+}
+
 let express = require('express');
 let app = express();
-require('dotenv').config;
 
 headerPath = __dirname + "/views/index.html";
 stylePath = __dirname + "/public";
