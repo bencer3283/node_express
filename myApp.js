@@ -13,10 +13,10 @@ stylePath = __dirname + "/public";
 
 urlencodedParser = bodyParser.urlencoded({extended: false});
 
-app.use(function (req, res, next) {
+app.use(urlencodedParser, function (req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
     next();
-}, urlencodedParser);
+});
 
 app.get("/", function(req, res) {
     res.sendFile(headerPath);
