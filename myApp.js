@@ -3,16 +3,20 @@ if (result.error) {
   throw result.error;
 }
 
+let bodyParser = require('body-parser');
+
 let express = require('express');
 let app = express();
 
 headerPath = __dirname + "/views/index.html";
 stylePath = __dirname + "/public";
 
+urlencodedParser = bodyParser.urlencoded({extended: false});
+
 app.use(function (req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
     next();
-})
+}, urlencodedParser);
 
 app.get("/", function(req, res) {
     res.sendFile(headerPath);
